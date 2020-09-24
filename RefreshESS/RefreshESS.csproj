@@ -452,7 +452,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Collection\PropertiesCollection.cs" />
     <Compile Include="DriverSetup.cs" />
     <Compile Include="Hooks.cs" />
     <Compile Include="Pages\BasePage.cs" />
@@ -468,9 +467,6 @@
     <None Include="Features\Login.feature" />
     <None Include="Features\UpdateProfile.feature" />
     <None Include="packages.config" />
-    <Content Include="$(TargetDir)\geckodriver.exe" CopyToPublishDirectory ="Always">
-      <Link>geckodriver.exe</Link>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.1.1.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.Analyzers.dll" />
