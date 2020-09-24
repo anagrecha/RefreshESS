@@ -13,6 +13,7 @@ namespace RefreshESS
 
     public sealed class Hooks : BasePage
     {
+        //Initialize paramaters
         public IWebDriver Driver;   
         private static ExtentTest featureName;
         private static ExtentTest scenario;
