@@ -6,6 +6,9 @@ using RefreshESS.Pages;
 using OpenQA.Selenium;
 using BoDi;
 using OpenQA.Selenium.Firefox;
+using System;
+using System.IO;
+using NUnit.Framework;
 
 namespace RefreshESS
 {
@@ -16,6 +19,7 @@ namespace RefreshESS
         //Initialize paramaters
         public IWebDriver Driver;   
         private static ExtentTest featureName;
+        [ThreadStatic]
         private static ExtentTest scenario;
         public static AventStack.ExtentReports.ExtentReports Extent;
 
@@ -31,7 +35,11 @@ namespace RefreshESS
         [BeforeTestRun]
         public static void IntializeReport()
         {
-            var htmlReporter = new ExtentHtmlReporter(@"C:\Users\anagrecha\source\repos\new\RefreshESS\Index.html");
+
+            string path1 = AppDomain.CurrentDomain.BaseDirectory.Replace("\\RefreshESS\\bin\\Debug", "");
+            string path = path1 + "TestResults\\index.html";
+            // var htmlReporter = new ExtentHtmlReporter(@"C:\Users\anagrecha\source\repos\new\RefreshESS\Index.html");
+            var htmlReporter = new ExtentHtmlReporter(path);
             //htmlReporter.Config.Theme = AventStack.ExtentReports.Reporter.Configuration.Theme.Dark;
             Extent = new AventStack.ExtentReports.ExtentReports();
             Extent.AttachReporter(htmlReporter);
@@ -44,7 +52,7 @@ namespace RefreshESS
         }
 
         [BeforeScenario]
-        public void CreateScenario()
+        public void  CreateScenario()
         {
             scenario = featureName.CreateNode<Scenario>(_scenarioContext.ScenarioInfo.Title);            
         }            
@@ -93,6 +101,7 @@ namespace RefreshESS
         [AfterTestRun]
         public static void FlushExtent()
         {
+            //featureName.
             Extent.Flush();
         }
        
